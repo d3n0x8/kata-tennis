@@ -11,7 +11,7 @@ import katatennis.TennisGame1;
 
 import java.util.stream.Stream;
 
-public class TennisTest {
+class TennisTest {
 
 	@ParameterizedTest
 	@MethodSource("gameProvider")

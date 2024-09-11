@@ -20,59 +20,48 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String getScore() {
-        String score = "";
 
         if (player1Score == player2Score)
-            score = determineTieState(player1Score);
+            return determineTieState(player1Score);
         else if (player1Score >=4 || player2Score >=4)
-            score = determineAdvantageOrWin(player1Score, player2Score);
+            return determineAdvantageOrWin(player1Score, player2Score);
         else
-            score = generateScoreDisplay(player1Score, player2Score);
+            return generateScoreDisplay(player1Score, player2Score);
 
-        return score;
     }
 
     public String determineTieState(int player1Score) {
-        String score;
 
         switch (player1Score)
         {
             case 0:
-                    score = "Love-All";
-                break;
+                    return "Love-All";
             case 1:
-                    score = "Fifteen-All";
-                break;
+                    return "Fifteen-All";
             case 2:
-                    score = "Thirty-All";
-                break;
+                    return "Thirty-All";
             default:
-                    score = "Deuce";
-                break;
-
+                    return  "Deuce";
         }
-        return score;
     }
 
     public String determineAdvantageOrWin(int player1Score, int player2Score) {
-        String score;
         int minusResult = player1Score-player2Score;
 
         if (minusResult==1)
-            score = "Advantage player1";
+            return "Advantage player1";
         else if (minusResult ==-1)
-            score = "Advantage player2";
+            return "Advantage player2";
         else if (minusResult>=2)
-            score = "Win for player1";
+            return "Win for player1";
         else
-            score = "Win for player2";
+            return "Win for player2";
 
-        return score;
     }
 
     public String generateScoreDisplay(int player1Score, int player2Score){
         String score = "";
-        int currentPlayerScore=0;
+        int currentPlayerScore;
 
         for (int playerIndex=1; playerIndex<3; playerIndex++)
         {

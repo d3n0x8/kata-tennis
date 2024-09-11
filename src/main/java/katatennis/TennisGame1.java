@@ -60,34 +60,13 @@ public class TennisGame1 implements TennisGame {
     }
 
     public String generateScoreDisplay(int player1Score, int player2Score){
-        String score = "";
-        int currentPlayerScore;
+        String[] scoreDisplay = {
+                "Love",
+                "Fifteen",
+                "Thirty",
+                "Forty"
+        };
 
-        for (int playerIndex=1; playerIndex<3; playerIndex++)
-        {
-            if (playerIndex==1)
-                currentPlayerScore = player1Score;
-            else {
-                score+="-";
-                currentPlayerScore = player2Score;
-            }
-
-            switch(currentPlayerScore)
-            {
-                case 1:
-                    score+="Fifteen";
-                    break;
-                case 2:
-                    score+="Thirty";
-                    break;
-                case 3:
-                    score+="Forty";
-                    break;
-                default:
-                    score+="Love";
-                    break;
-            }
-        }
-        return score;
+        return scoreDisplay[player1Score] + "-" + scoreDisplay[player2Score];
     }
 }

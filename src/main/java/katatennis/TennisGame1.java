@@ -21,24 +21,20 @@ public class TennisGame1 implements TennisGame {
 
     public String getScore() {
         String score = "";
-        int tempScore=0;
+
         if (player1Score == player2Score)
-        {
-            score = allAnalyse(player1Score);
-        }
+            score = determineTieState(player1Score);
         else if (player1Score >=4 || player2Score >=4)
-        {
-            score = advantageAnalyse(player1Score, player2Score);
-        }
+            score = determineAdvantageOrWin(player1Score, player2Score);
         else
-        {
-            score = regularAnalyse(player1Score, player2Score);
-        }
+            score = generateScoreDisplay(player1Score, player2Score);
+
         return score;
     }
 
-    public String allAnalyse(int player1Score) {
+    public String determineTieState(int player1Score) {
         String score;
+
         switch (player1Score)
         {
             case 0:
@@ -58,9 +54,10 @@ public class TennisGame1 implements TennisGame {
         return score;
     }
 
-    public String advantageAnalyse(int player1Score, int player2Score) {
+    public String determineAdvantageOrWin(int player1Score, int player2Score) {
         String score;
         int minusResult = player1Score-player2Score;
+
         if (minusResult==1)
             score = "Advantage player1";
         else if (minusResult ==-1)
@@ -69,21 +66,25 @@ public class TennisGame1 implements TennisGame {
             score = "Win for player1";
         else
             score = "Win for player2";
+
         return score;
     }
 
-    public String regularAnalyse(int player1Score, int player2Score){
+    public String generateScoreDisplay(int player1Score, int player2Score){
         String score = "";
-        int tempScore=0;
-        for (int i=1; i<3; i++)
+        int currentPlayerScore=0;
+
+        for (int playerIndex=1; playerIndex<3; playerIndex++)
         {
-            if (i==1) tempScore = player1Score;
-            else { score+="-"; tempScore = player2Score;}
-            switch(tempScore)
+            if (playerIndex==1)
+                currentPlayerScore = player1Score;
+            else {
+                score+="-";
+                currentPlayerScore = player2Score;
+            }
+
+            switch(currentPlayerScore)
             {
-                case 0:
-                    score+="Love";
-                    break;
                 case 1:
                     score+="Fifteen";
                     break;
@@ -92,6 +93,9 @@ public class TennisGame1 implements TennisGame {
                     break;
                 case 3:
                     score+="Forty";
+                    break;
+                default:
+                    score+="Love";
                     break;
             }
         }
